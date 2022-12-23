@@ -12,12 +12,12 @@ app.get('/catalogue', (req, res) => {
 
 app.get('/livre/:id', (req, res) => {
     const id = req.params.id;
-    const livre = books.livres.filter(item => item.id === parseInt(id));
+    const livre = books.GetLivre(id);
 
-    if(livre.length === 0)
+    if(livre === -1)
         res.sendStatus(404);
     else 
-        res.status(207).json(livre[0]);
+        res.status(207).json(livre);
 })
 
 
