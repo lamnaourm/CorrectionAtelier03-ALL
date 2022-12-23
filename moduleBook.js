@@ -74,11 +74,11 @@ var livres = [
 module.exports.livres = livres;
 
 module.exports.AddLivre = (livre) => {
-  livres.push(livre);
+    this.livres.push(livre);
 };
 
 module.exports.GetLivre = (id) => {
-    const livre = livres.filter(item => item.id === Number(id));
+    const livre = this.livres.filter(item => item.id === Number(id));
     if(livre.length === 0)
         return -1
     else 
@@ -86,11 +86,21 @@ module.exports.GetLivre = (id) => {
 };
 
 module.exports.update = (livre) => {
-
+    if(this.GetLivre(livre.id) === -1)
+        return 0
+    else {
+        this.livres = livres.map(item => item.id === livre.id ? livre : item);
+        return 1;
+    }
 }
 
 module.exports.delete = (id) => {
-    
+    if(this.GetLivre(id) === -1)
+        return 0
+    else {
+        this.livres = livres.filter(item => item.id !== Number(id));
+        return 1;
+    }
 }
 
 

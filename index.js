@@ -29,16 +29,17 @@ app.post('/livre', (req, res) => {
 
 app.put('/livre', (req, res) => {
     const livre = req.body;
-    books.livres = books.livres.map(item => item.id === livre.id ? livre:item)
-    res.sendStatus(202);
+    if(books.update(livre) === 1)
+        res.sendStatus(202);
+    else
+        res.sendStatus(404);
+
 })
 
 app.delete('/livre/:id', (req, res) => {
     const id = req.params.id;
-    const len = livres.length;
-    books.livres = books.livres.filter(item => item.id != id)
-    if(len === livres.length)
-        res.sendStatus(504);
+    if(books.delete(id)===0)
+        res.sendStatus(404);
     else 
         res.sendStatus(210);
 })
