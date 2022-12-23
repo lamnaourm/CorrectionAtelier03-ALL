@@ -85,4 +85,12 @@ module.exports.GetLivre = (id) => {
         return livre[0]
 };
 
+module.exports.update = (livre) => {
+
+}
+
+module.exports.delete = (id) => {
+    
+}
+
 
